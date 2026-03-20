@@ -1,0 +1,200 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #060b14;
+  --bg-secondary: #0b1422;
+  --bg-panel: rgba(6, 11, 20, 0.94);
+  --bg-card: rgba(11, 20, 34, 0.88);
+  --accent-green: #00e87e;
+  --accent-green-dim: rgba(0, 232, 126, 0.12);
+  --accent-yellow: #ffb800;
+  --accent-yellow-dim: rgba(255, 184, 0, 0.12);
+  --accent-red: #ff3b5c;
+  --accent-red-dim: rgba(255, 59, 92, 0.12);
+  --accent-blue: #00b8ff;
+  --text-primary: #d4e0f0;
+  --text-muted: #4a6080;
+  --border-dim: rgba(0, 232, 126, 0.12);
+  --border-glow: rgba(0, 232, 126, 0.35);
+  --shadow-green: 0 0 20px rgba(0, 232, 126, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
+/* ─── Leaflet overrides ────────────────────────────────── */
+.leaflet-container {
+  background: #060b14 !important;
+  font-family: "Rajdhani", sans-serif;
+}
+
+.leaflet-control-zoom {
+  border: 1px solid var(--border-dim) !important;
+  background: var(--bg-panel) !important;
+  border-radius: 6px !important;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+}
+
+.leaflet-control-zoom a {
+  background: transparent !important;
+  color: var(--accent-green) !important;
+  border-bottom: 1px solid var(--border-dim) !important;
+  width: 30px !important;
+  height: 30px !important;
+  line-height: 30px !important;
+  font-size: 16px !important;
+  transition: background 0.2s;
+}
+
+.leaflet-control-zoom a:hover {
+  background: var(--accent-green-dim) !important;
+}
+
+.leaflet-control-zoom-out {
+  border-bottom: none !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(6, 11, 20, 0.7) !important;
+  color: #2a4060 !important;
+  font-size: 9px !important;
+}
+
+.leaflet-control-attribution a {
+  color: #3a5070 !important;
+}
+
+/* Custom POP icon */
+.pop-icon-wrapper {
+  position: relative;
+}
+
+.pop-icon-wrapper .ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  opacity: 0.4;
+  animation: ring-pulse 2.5s ease-out infinite;
+}
+
+@keyframes ring-pulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* ─── Scrollbar ────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-dim);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-glow);
+}
+
+/* ─── Panel base ───────────────────────────────────────── */
+.glass-panel {
+  background: var(--bg-panel);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-dim);
+  border-radius: 8px;
+}
+
+/* ─── Drawing cursor ───────────────────────────────────── */
+.drawing-mode .leaflet-container {
+  cursor: crosshair !important;
+}
+
+/* ─── Status colors ────────────────────────────────────── */
+.status-active { color: var(--accent-green); }
+.status-alert { color: var(--accent-yellow); }
+.status-inactive { color: var(--accent-red); }
+
+/* ─── Scan line effect ─────────────────────────────────── */
+.scanline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.scanline::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 232, 126, 0.06),
+    transparent
+  );
+  animation: scan 10s linear infinite;
+}
+
+@keyframes scan {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+/* ─── Topbar gradient ──────────────────────────────────── */
+.topbar-gradient {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 11, 20, 0.98) 0%,
+    rgba(6, 11, 20, 0.0) 100%
+  );
+}
+
+/* ─── Leaflet popup ────────────────────────────────────── */
+.leaflet-popup-content-wrapper {
+  background: var(--bg-panel) !important;
+  border: 1px solid var(--border-dim) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5), var(--shadow-green) !important;
+  backdrop-filter: blur(16px);
+  padding: 0 !important;
+}
+
+.leaflet-popup-tip-container {
+  display: none;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  width: auto !important;
+}
+
+.leaflet-popup-close-button {
+  color: var(--text-muted) !important;
+  top: 8px !important;
+  right: 8px !important;
+  font-size: 16px !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: var(--accent-green) !important;
+}
