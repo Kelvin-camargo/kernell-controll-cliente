@@ -1,0 +1,11 @@
+{
+  "[project]/src/components/BackboneMap.tsx [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/src/components/BackboneMap.tsx [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/node_modules_a32eec6e._.js",
+      "static/chunks/src_components_6fc5d773._.js",
+      "static/chunks/node_modules_leaflet_dist_leaflet_ef5f0413.css",
+      "static/chunks/src_components_BackboneMap_tsx_404c3cd5._.js"
+    ]
+  }
+}
